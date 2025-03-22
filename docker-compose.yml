@@ -24,6 +24,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   n8n:
     image: docker.n8n.io/n8nio/n8n
@@ -41,6 +43,8 @@ services:
       - postgres
     volumes:
       - n8n_storage:/home/node/.n8n
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       postgres:
         condition: service_healthy
